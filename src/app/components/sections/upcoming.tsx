@@ -1,157 +1,207 @@
 'use client'
 
-import { Calendar, Users, Code } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence, type PanInfo } from 'framer-motion';
+import { Mic, CircuitBoard,  ArrowRight, Code ,MoveRight} from 'lucide-react'
+type EventType = {
+  id: number;
+  Icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  description: string;
+};
+
+// New event data with corrected icon
+const eventsData = [
+  {
+    id: 1,
+    Icon: Mic,
+    title: 'MicDrop',
+    description: 'Open mic night for poetry, music, and stand-up',
+  },
+  {
+    id: 2,
+    Icon: CircuitBoard,
+    title: 'Circuit Rush',
+    description: 'Hardware hackathon / circuit design challenge',
+  },
+  {
+    id: 3,
+    Icon: Code,
+    title: 'Vertex Velocity',
+    description: 'Mini sports fest (track, tug-of-war, football, etc.)',
+  },
+  {
+    id: 4,
+    Icon: Code, // Corrected icon from placeholder
+    title: 'CodeClash',
+    description: 'A competitive programming contest for all skill levels.',
+  },
+]
+
+// Animation variants for the cards
+const cardVariants = {
+  // ... 'enter' and 'center' variants remain the same
+  enter: ([offset, direction]: [number, number]) => ({
+    x: direction > 0 ? '100%' : '-100%',
+    opacity: 0,
+    scale: 0.8,
+  }),
+  center: ([offset, direction]: [number, number]) => ({
+    x: '0%',
+    y: offset === 0 ? 0 : 20,
+    scale: offset === 0 ? 1 : 0.9,
+    rotate: offset === 0 ? -5 : 5,
+    zIndex: eventsData.length - Math.abs(offset),
+    opacity: 1,
+  }),
+
+  // FIX IS HERE: Changed to accept a single number
+  exit: (direction: number) => ({ 
+    x: direction < 0 ? '100%' : '-100%',
+    opacity: 0,
+    zIndex: 0,
+  }),
+};
+
 
 export default function Events() {
-  const events = [
-    {
-      id: 1,
-      title: 'NavUtsav 2025',
-      description: 'Annual cultural and technical festival celebrating innovation and creativity',
-      icon: Calendar,
-      iconBg: 'from-orange-500 to-red-500',
-      cardBg: 'from-orange-950/30 to-red-950/20',
-      borderColor: 'border-orange-500/30',
-      date: 'February 2025',
-    },
-    {
-      id: 2,
-      title: 'Recruitment 2025',
-      description: 'Join the Vertex family! Open positions for passionate tech enthusiasts',
-      icon: Users,
-      iconBg: 'from-purple-500 to-pink-500',
-      cardBg: 'from-purple-950/30 to-pink-950/20',
-      borderColor: 'border-purple-500/30',
-      date: 'January 2025',
-    },
-    {
-      id: 3,
-      title: 'Hackathon 2025',
-      description: '24-hour coding marathon to build innovative solutions and win exciting prizes',
-      icon: Code,
-      iconBg: 'from-cyan-500 to-blue-500',
-      cardBg: 'from-cyan-950/30 to-blue-950/20',
-      borderColor: 'border-cyan-500/30',
-      date: 'November 2025',
-    },
-  ]
+  const [events, setEvents] = useState(eventsData);
+  const [[activeIndex, direction], setActive] = useState([0, 0]); // Store index and direction
+
+  // Safety check for empty events array
+  if (!events || events.length === 0) {
+    return (
+      <section id="events" className="flex justify-center items-center min-h-screen" style={{ backgroundColor: '#04041e' }}>
+        <h2 className="text-2xl text-gray-400">No upcoming events.</h2>
+      </section>
+    );
+  }
+
+  // Function to handle changing the active card
+  const changeCard = (newDirection: number) => {
+    setActive(prev => {
+      let newIndex = prev[0] + newDirection;
+      if (newIndex < 0) newIndex = events.length - 1;
+      else if (newIndex >= events.length) newIndex = 0;
+      return [newIndex, newDirection];
+    });
+  };
+
+  const prevIndex = (activeIndex - 1 + events.length) % events.length;
+  const nextIndex = (activeIndex + 1) % events.length;
+
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const swipe = info.offset.x;
+  if (swipe > 50) changeCard(-1);
+  else if (swipe < -50) changeCard(1);
+};
 
   return (
     <section
       id="events"
-      className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative flex flex-col justify-center items-center min-h-screen py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
       style={{ backgroundColor: '#04041e' }}
     >
-      {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(123,49,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(123,49,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[150px]" />
 
-      {/* Gradient Orb */}
-      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[120px]" />
-
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Upcoming Events
-            </span>
-          </h2>
-          <p className="text-gray-400 text-lg">
-            Join us in our exciting upcoming events and activities
-          </p>
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
+        <div className="text-center mb-12 md:mb-16">
+         <div className="text-center mb-12 md:mb-16">
+  <h2 
+    className="text-3xl md:text-4xl font-bold text-yellow-200 mb-4" 
+    style={{ textShadow: '0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.1)' }}
+  >
+    Upcoming Events
+  </h2>
+</div>
         </div>
 
-        {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {events.map((event, index) => (
-            <div
-              key={event.id}
-              className={`group relative p-6 rounded-2xl border ${event.borderColor} bg-gradient-to-br ${event.cardBg} backdrop-blur-sm hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 animate-fade-in-up`}
-              style={{
-                animationDelay: `${index * 0.2}s`,
-              }}
-            >
-              {/* Icon */}
-              <div
-                className={`w-14 h-14 rounded-xl bg-gradient-to-br ${event.iconBg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-              >
-                <event.icon className="w-7 h-7 text-white" />
-              </div>
+        <div className="w-full flex justify-center items-center h-[450px] md:h-[400px]">
+          <div className="hidden lg:flex w-1/4">
+            <SideCard event={events[prevIndex]} />
+          </div>
 
-              {/* Content */}
-              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
-                {event.title}
-              </h3>
-              
-              <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                {event.description}
-              </p>
+          <div className="relative w-full lg:w-1/2 h-full flex items-center justify-center">
+            <AnimatePresence initial={false} custom={direction}>
+              {events.map((event, index) => {
+                const offset = index - activeIndex;
+                if (Math.abs(offset) > 1) return null;
 
-              {/* Date Badge */}
-              <div className="flex items-center gap-2 text-gray-300 text-sm">
-                <Calendar className="w-4 h-4" />
-                <span>{event.date}</span>
-              </div>
+                const isFrontCard = offset === 0;
 
-              {/* Hover Gradient Border Effect */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10" />
-            </div>
-          ))}
+                return (
+                  <motion.div
+                    key={event.id}
+                    className={`absolute w-[85%] max-w-[320px] h-[380px] rounded-2xl flex flex-col justify-between p-6 shadow-2xl ${
+                      isFrontCard ? 'bg-[#2b1c5a] cursor-grab active:cursor-grabbing' : 'bg-gray-200'
+                    }`}
+                    // Use variants for cleaner animations
+                    variants={cardVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    // Pass offset and direction to variants
+                    custom={[offset, direction]}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    drag={isFrontCard ? 'x' : false}
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={handleDragEnd}
+                  >
+                    {isFrontCard ? <FrontCardContent event={event} onNext={() => changeCard(1)} /> : <BackCardContent />}
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+
+          <div className="hidden lg:flex w-1/4">
+            <SideCard event={events[nextIndex]} />
+          </div>
         </div>
 
-        {/* View More Button */}
-        <div className="flex justify-center animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-          <button className="group px-8 py-3.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 hover:scale-105 flex items-center gap-2">
-            View More
-            <svg
-              className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </button>
-        </div>
+      <div className="flex justify-center mt-12 md:mt-16">
+  <button className="group inline-flex items-center justify-center gap-3 px-8 py-3 rounded-full text-white font-medium bg-gradient-to-r from-purple-1000 to-purple-800 border border-white/20 transition-all duration-300 hover:from-purple-900 hover:to-purple-700 hover:scale-105 hover:border-white/40">
+    <span>View More</span>
+    <MoveRight 
+      className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-2" 
+    />
+  </button>
+</div>
       </div>
-
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 1s ease-out forwards;
-        }
-
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
     </section>
   )
 }
+
+// Sub-components remain the same...
+const SideCard: React.FC<{ event: EventType }> = ({ event }) => (
+  <div className="w-full h-[320px] border-2 border-dashed border-white/20 rounded-2xl p-6 flex flex-col text-center items-center justify-center">
+      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4">
+        <event.Icon className="w-7 h-7 text-white" />
+      </div>
+      <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
+      <p className="text-gray-400 text-sm leading-relaxed">{event.description}</p>
+  </div>
+);
+
+const FrontCardContent: React.FC<{ event: EventType; onNext: () => void }> = ({ event, onNext }) => (
+  <>
+    <div>
+      <div className="w-14 h-14 rounded-xl bg-blue-500 flex items-center justify-center mb-4">
+        <event.Icon className="w-7 h-7 text-white" />
+      </div>
+      <h3 className="text-3xl font-bold text-white">{event.title}</h3>
+    </div>
+    <div className="flex justify-between items-end">
+        <p className="text-gray-300 text-sm w-3/4">{event.description}</p>
+        <button 
+          onClick={onNext}
+          className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+        >
+          <ArrowRight size={24} />
+        </button>
+    </div>
+  </>
+);
+
+const BackCardContent = () => <div />;
