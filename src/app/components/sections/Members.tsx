@@ -1,6 +1,10 @@
 'use client'
 
 import { ArrowUpRight } from 'lucide-react'
+import { Urbanist, Poppins } from 'next/font/google'
+
+const urbanist = Urbanist({ subsets: ['latin'] })
+const poppins = Poppins({ subsets: ['latin'], weight: '400' })
 
 export default function Founders() {
   const founders = [
@@ -8,7 +12,7 @@ export default function Founders() {
       id: 1,
       name: 'Pranjal',
       role: 'Overall Lead',
-      image: '/founders/pranjal.jpg', //example
+      image: '/founders/pranjal.jpg',
     },
     {
       id: 2,
@@ -18,19 +22,19 @@ export default function Founders() {
     },
     {
       id: 3,
-      name: 'xyz',
+      name: 'Amogh',
       role: 'Media Lead',
       image: '/founders/amogh.jpg',
     },
     {
       id: 4,
-      name: 'xyz',
+      name: 'Aryan',
       role: 'Events Lead',
       image: '/founders/aryan.jpg',
     },
     {
       id: 5,
-      name: 'xyz',
+      name: 'Sneha',
       role: 'Design Lead',
       image: '/founders/sneha.jpg',
     },
@@ -39,127 +43,79 @@ export default function Founders() {
   return (
     <section
       id="members"
-      className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8 overflow-hidden flex items-center"
       style={{ backgroundColor: '#04041e' }}
     >
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(123,49,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(123,49,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]" />
-
-      {/* Right Gradient Line */}
-      <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-500 via-cyan-500 to-purple-500" />
-
+      
       {/* Gradient Orbs */}
       <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[120px]" />
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-7xl w-full mx-auto">
         {/* Header Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Left: Title */}
-          <div className="animate-fade-in">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-              Meet the
-              <br />
-              Founders
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-8 items-start mb-16">
+          <div className={`animate-fade-in ${urbanist.className}`}>
+            <h2 className="text-[64px] font-semibold text-white leading-[77px]">
+              Meet the<br />Founders
             </h2>
           </div>
-
-          {/* Right: Description */}
-          <div className="flex items-center animate-fade-in-delay">
-            <p className="text-gray-300 text-lg leading-relaxed">
+          <div className={`animate-fade-in-delay lg:pt-2 ${poppins.className}`}>
+            <p className="text-white text-xl leading-[30px]">
               A team of passionate visionaries united by creativity, leadership, and a shared mission to shape a vibrant, inclusive community at Vertex.
             </p>
           </div>
         </div>
 
-        <div className="relative">
-          {/* Horizontal Scroll Container */}
-          <div className="overflow-x-auto overflow-y-hidden pb-6 scrollbar-custom">
-            <div className="flex gap-6 min-w-max px-2">
-              {founders.map((founder, index) => (
-                <div
-                  key={founder.id}
-                  className="group relative w-80 h-96 rounded-3xl bg-gradient-to-br from-gray-400 to-gray-300 overflow-hidden flex-shrink-0 hover:scale-105 transition-all duration-300 animate-fade-in-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {/* Image Placeholder */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-600 to-slate-400">
-                   
-                    <div className="w-full h-full flex items-center justify-center text-white text-6xl font-bold opacity-20">
-                      {founder.name[0]}
-                    </div>
-                  </div>
-
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                  {/* Content at Bottom */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
-                    <div>
-                      <h3 className="text-white text-2xl font-bold mb-1">
-                        {founder.name}
-                      </h3>
-                      <p className="text-purple-400 text-sm font-medium">
-                        {founder.role}
-                      </p>
-                    </div>
-
-                    {/* Arrow Button */}
-                    <button className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-45">
-                      <ArrowUpRight className="w-6 h-6 text-white" />
-                    </button>
-                  </div>
-
-                  {/* Hover Effect Border */}
-                  <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-purple-500/50 transition-all duration-300" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Scroll Hint */}
-          <div className="flex justify-center mt-8 gap-2">
-            {founders.map((_, index) => (
+        {/* Horizontally Scrolling Container - Width is now constrained to fit 3 cards */}
+        <div className="overflow-x-auto overflow-y-hidden pb-6 scrollbar-custom max-w-[1216px] mx-auto">
+          <div className="flex gap-8 min-w-max">
+            {founders.map((founder, index) => (
               <div
-                key={index}
-                className="w-2 h-2 rounded-full bg-purple-500/30"
-              />
+                key={founder.id}
+                // Card size increased to w-96
+                className="group relative w-96 aspect-square rounded-3xl bg-slate-300 overflow-hidden flex-shrink-0 hover:scale-105 transition-transform duration-300 animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="w-full h-full flex items-center justify-center text-slate-400 text-8xl font-bold opacity-20 select-none">
+                  {founder.name[0]}
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
+                  <div>
+                    <h3 className="text-slate-900 text-2xl font-bold mb-1">
+                      {founder.name}
+                    </h3>
+                    <p className="text-violet-600 text-sm font-medium">
+                      {founder.role}
+                    </p>
+                  </div>
+                  <button className="w-12 h-12 rounded-full bg-black/10 backdrop-blur-sm hover:bg-black/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-45">
+                    <ArrowUpRight className="w-6 h-6 text-violet-600" />
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </div>
 
       <style jsx>{`
+        /* Animations */
         @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-
         .animate-fade-in {
           animation: fade-in 1s ease-out forwards;
         }
-
         .animate-fade-in-delay {
           animation: fade-in 1s ease-out 0.3s forwards;
           opacity: 0;
         }
-
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
           opacity: 0;
@@ -169,21 +125,17 @@ export default function Founders() {
         .scrollbar-custom::-webkit-scrollbar {
           height: 8px;
         }
-
         .scrollbar-custom::-webkit-scrollbar-track {
           background: rgba(71, 85, 105, 0.1);
           border-radius: 10px;
         }
-
         .scrollbar-custom::-webkit-scrollbar-thumb {
           background: linear-gradient(90deg, #a855f7, #ec4899);
           border-radius: 10px;
         }
-
         .scrollbar-custom::-webkit-scrollbar-thumb:hover {
           background: linear-gradient(90deg, #9333ea, #db2777);
         }
-
         /* Firefox */
         .scrollbar-custom {
           scrollbar-width: thin;

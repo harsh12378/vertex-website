@@ -107,10 +107,10 @@ export default function Events() {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
         <div className="text-center mb-12 md:mb-16">
-         <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-12 md:mb-16">
   <h2 
-    className="text-3xl md:text-4xl font-bold text-yellow-200 mb-4" 
-    style={{ textShadow: '0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.1)' }}
+    className="text-3xl md:text-4xl font-semibold text-yellow-200 mb-4" 
+    style={{ textShadow: '0 0 10px rgba(247, 247, 247, 0.4), 0 0 20px rgba(241, 242, 245, 0.2)' }}
   >
     Upcoming Events
   </h2>
