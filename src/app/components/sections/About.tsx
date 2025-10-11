@@ -3,15 +3,15 @@ import React from 'react';
 // The main App component that renders both sections
 const About: React.FC = () => {
   return (
-    // A single container with the dark background for both components
-    <div className="bg-[#04041E] font-sans">
+    
+    <section id="about" className="bg-[#04041E] font-sans">
       <AboutVertex />
       <WhyJoinUs />
-    </div>
+    </section>
   );
 }
 export default About;
-// The new "About Vertex" component, updated with Figma styles
+
 const AboutVertex: React.FC = () => {
   return (
     <div className="text-white py-14 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
