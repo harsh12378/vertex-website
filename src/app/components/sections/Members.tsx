@@ -67,13 +67,12 @@ export default function Founders() {
           </div>
         </div>
 
-        {/* Horizontally Scrolling Container - Width is now constrained to fit 3 cards */}
-        <div className="overflow-x-auto overflow-y-hidden pb-6 scrollbar-custom max-w-[1216px] mx-auto">
+        {/* Horizontally Scrolling Container - Height increased with py-16 */}
+        <div className="overflow-x-auto overflow-y-hidden py-16 scrollbar-custom">
           <div className="flex gap-8 min-w-max">
             {founders.map((founder, index) => (
               <div
                 key={founder.id}
-                // Card size increased to w-96
                 className="group relative w-96 aspect-square rounded-3xl bg-slate-300 overflow-hidden flex-shrink-0 hover:scale-105 transition-transform duration-300 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -89,7 +88,7 @@ export default function Founders() {
                       {founder.role}
                     </p>
                   </div>
-                  <button className="w-12 h-12 rounded-full bg-black/10 backdrop-blur-sm hover:bg-black/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-45">
+                  <button className="w-12 h-12 rounded-full bg-transparent border border-violet-600 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-45 group-hover:bg-violet-600/10">
                     <ArrowUpRight className="w-6 h-6 text-violet-600" />
                   </button>
                 </div>
