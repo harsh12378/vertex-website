@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-
+import Image from 'next/image';
 // The main App component that renders only the Footer
 const App: React.FC = () => {
   return (
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
         <div className="w-full flex flex-col items-center gap-10">
             <div className="w-full flex flex-col md:flex-row justify-between items-center gap-8">
                 {/* Logo */}
-                <img src="/vertex-logo.png" alt="VERTEX Logo" className="h-8 w-auto" />
+                <Image src="/vertex-logo.png" alt="VERTEX Logo" className="h-8 w-auto" />
 
                 {/* Nav Links */}
                 <nav className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-y-4 gap-x-8 md:gap-x-14">

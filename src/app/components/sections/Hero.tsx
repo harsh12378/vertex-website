@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from 'next/link';
 import { useEffect, useState } from "react";
+
 export default function Hero() {
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
