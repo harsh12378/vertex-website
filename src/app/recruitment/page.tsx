@@ -82,7 +82,7 @@ export default function RegisterPage() {
 
   return (
     <div 
-      className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
       style={{ backgroundColor: '#04041e' }}
     >
       {/* Background Grid */}
