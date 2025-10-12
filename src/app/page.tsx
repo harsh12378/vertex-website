@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Navbar from "./components/sections/Navbar";
 import Hero from "./components/sections/Hero";
-import Upcoming from './components/sections/upcoming'
+import UpcomingEvents from './components/sections/upcoming'
 import About from "./components/sections/About";
 import Members from './components/sections/Members'
 import  Contact from './components/sections/Contact'
@@ -10,7 +10,7 @@ export default function Home() {
     <div>
    <Navbar/>
    <Hero/>
-   <Upcoming/>
+   <UpcomingEvents/>
    <About/>
    <Members/>
    <Contact/>
