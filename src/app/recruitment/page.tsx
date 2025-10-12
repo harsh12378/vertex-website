@@ -46,7 +46,7 @@ export default function RegisterPage() {
       return
     }
      try{
-      const response=await fetch('http://localhost:3000/api/recruitment',{
+      const response=await fetch('/api/recruitment',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(formData)
