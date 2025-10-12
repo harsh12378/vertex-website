@@ -1,8 +1,30 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-
+import Link from 'next/link';
+import { useEffect, useState } from "react";
 export default function Hero() {
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 20 - 10,
+        y: (e.clientY / window.innerHeight) * 20 - 10,
+      })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  const scrollToEvents = () => {
+    const element = document.getElementById('events')
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
   const boxes: undefined[] = Array.from({ length: 7 });
 
   const getClipPath = (index: number): string => {
@@ -30,7 +52,7 @@ export default function Hero() {
   };
 
   return (
-    <main className="relative w-screen h-screen overflow-hidden bg-[#0c001f]">
+    <main id="home"className="relative w-full h-screen overflow-hidden bg-[#0c001f]">
       {/* Blurry Background */}
       <div
         className="absolute inset-0 z-[1] scale-[0.8] blur-[200px]"
@@ -41,11 +63,11 @@ export default function Hero() {
       />
 
       {/* Decorative Boxes */}
-      <div className="absolute inset-0 flex items-center justify-center gap-[50px] z-0">
+      <div className="absolute inset-0 flex items-center justify-center gap-[50px] z-0 overflow-hidden">
         {boxes.map((_, index) => (
           <div
             key={index}
-            className={`w-[204.4px] ${getHeight(index)} flex-none rounded-[18.17px]`}
+            className={`w-[204.4px] ${getHeight(index)} flex-none rounded-[18.17px] border border-white/20`}
             style={{
               clipPath: getClipPath(index),
               background:
@@ -62,7 +84,7 @@ export default function Hero() {
         {/* Top Section */}
         <div className="flex flex-col items-center justify-center flex-grow">
           <Image
-            src="https://api.builder.io/api/v1/image/assets/TEMP/7e34222ea5fa931db58533504e9e05915ee151a0?width=2085"
+            src="/vertex2.png"
             alt="VERTEX"
             width={1043}
             height={300}
@@ -75,13 +97,22 @@ export default function Hero() {
         </div>
 
         {/* Buttons */}
-        <div className="flex gap-6 mt-12"> {/* Added mt-12 to shift down */}
-          <button className="px-6 py-3 rounded-full text-white text-lg font-semibold font-[Urbanist] bg-[#04041E] border border-white/20 transition-all hover:scale-105">
+        <div className="flex gap-6 mt-12">
+          <button 
+            onClick={scrollToEvents}
+            className="flex items-center gap-[16px] px-[28px] py-[12px] rounded-full text-white text-lg font-semibold font-[Urbanist] transition-all hover:scale-105"
+            style={{
+              background: "linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, rgba(153, 153, 153, 0.05) 100%)",
+              boxShadow: "-2px 0px 6px rgba(255, 255, 255, 0.2)",
+              width: "185px",
+              height: "48px",
+            }}
+          >
             Explore Events
           </button>
-          <button className="px-6 py-3 rounded-full text-white text-lg font-semibold font-[Urbanist] bg-gradient-to-r from-[#04041E] to-[rgba(97,0,233,0.7)] transition-all hover:scale-105">
+          <Link href="/recruitment" className="px-6 py-3 rounded-full text-white text-lg font-semibold font-[Urbanist] bg-gradient-to-r from-[#04041E] to-[rgba(97,0,233,0.7)] transition-all hover:scale-105">
             Join Club
-          </button>
+          </Link>
         </div>
       </div>
     </main>
