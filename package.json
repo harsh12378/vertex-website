@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@prisma/client": "^6.16.2",
+    "framer-motion": "^11.2.11",
     "lucide-react": "^0.544.0",
     "next": "15.4.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-icons": "^5.5.0"
+    "swiper": "^12.0.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -27,5 +29,10 @@
     "prisma": "^6.16.2",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "prisma": {
+    "engines": {
+      "python": "3.10"
+    }
   }
 }
