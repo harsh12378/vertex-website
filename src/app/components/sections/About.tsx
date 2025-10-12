@@ -1,186 +1,155 @@
-'use client'
+import React from 'react';
 
-import { Settings, Palette, Zap, Lightbulb, Handshake, ArrowRight } from 'lucide-react'
-
-export default function About() {
-  const features = [
-    {
-      id: 1,
-      title: 'Tech in Action',
-      description: 'Hands-on workshops, hackathons, and real-world engineering experiences that bring ideas to life.',
-      icon: Settings,
-      size: 'large',
-    },
-    {
-      id: 2,
-      title: 'Culture & Creativity',
-      description: 'Open mics, fests, and artistic events where students express, explore, and connect beyond the classroom.',
-      icon: Palette,
-      size: 'large',
-    },
-    {
-      id: 3,
-      title: 'Sports & Spirit',
-      description: 'Fun-filled games to fitness challenges — build friendships, teamwork, and unforgettable memories.',
-      icon: Zap,
-      size: 'small',
-    },
-    {
-      id: 4,
-      title: 'Skill Building',
-      description: 'Opportunities to lead, plan, speak, and solve — shaping both your resume and your confidence.',
-      icon: Lightbulb,
-      size: 'small',
-    },
-    {
-      id: 5,
-      title: 'Networking',
-      description: 'Meet peers, mentors, and collaborators who challenge and support your journey.',
-      icon: Handshake,
-      size: 'small',
-    },
-  ]
-
+// The main App component that renders both sections
+const About: React.FC = () => {
   return (
-    <section
-      id="about"
-      className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
-      style={{ backgroundColor: '#04041e' }}
-    >
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(123,49,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(123,49,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]" />
+    
+    <section id="about" className="bg-[#04041E] font-sans">
+      <AboutVertex />
+      <WhyJoinUs />
+    </section>
+  );
+}
+export default About;
 
+const AboutVertex: React.FC = () => {
+  return (
+    <div className="text-white py-14 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+      <div className="max-w-7xl mx-auto flex flex-row items-stretch gap-[47px] w-full">
+        {/* Custom Slider Element */}
+        <div className="relative w-[12px] flex-shrink-0">
+          <div className="absolute w-[5px] left-1/2 top-1 bottom-0 -translate-x-1/2 bg-[#D9D9D9] bg-opacity-45 rounded-full"></div>
+          <div className="absolute w-[12px] h-[8px] left-1/2 top-1 -translate-x-1/2 bg-gradient-to-r from-[#A2AB9D] to-[#E9EFD9] rounded-full"></div>
+        </div>
 
-
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-cyan-600/10 rounded-full blur-[120px]" />
-
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* About Header */}
-        <div className="mb-12 animate-fade-in">
-          <p className="text-yellow-400 text-sm font-semibold mb-4 tracking-wider uppercase">
-            ABOUT VERTEX
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            Empowering students through creativity,
-            <br />
-            collaboration, and community.
-          </h2>
-          <div className="space-y-4 text-gray-300 text-base md:text-lg leading-relaxed max-w-4xl">
+        {/* Text Content */}
+        <div className="flex-1 flex flex-col items-start gap-[52px]">
+          <div className="flex flex-col items-start gap-[25px]">
+            <p className="font-semibold text-[28px] leading-tight tracking-[-0.02em] text-[#D4F39A]">
+              ABOUT VERTEX
+            </p>
+            <h2 className="font-bold text-[51px] leading-[61px] tracking-[-0.01em] text-white">
+              Empowering students through creativity, collaboration, and community.
+            </h2>
+          </div>
+          <div className="font-normal text-[28px] leading-[140%] tracking-[-0.01em] text-[#D9D9D9] space-y-6">
             <p>
-              In a world where learning goes beyond classrooms, Vertex stands as a dynamic student-led club under the Department of ETE. It is a space where innovation meets expression — bringing students together through technical excellence, cultural vibrance, and social impact.
+              In a world where learning goes beyond classrooms, Vertex stands as a dynamic student-led club from the ETE Department at DSCE. It is a space where innovation meets expression — bringing students together through technical excellence, cultural vibrance, and social impact.
             </p>
             <p>
               Driven by curiosity and passion, Vertex encourages students to step up, lead, create, and connect — shaping a well-rounded college experience rooted in teamwork, exploration, and growth.
             </p>
           </div>
         </div>
+      </div>
+    </div>
+  );
+};
 
-        {/* Why Join Us */}
-        <div className="mt-20 animate-fade-in-delay">
-          <h3 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent">
-              Why join us?
-            </span>
-          </h3>
+// Define the types for the InfoCard props
+interface InfoCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  className?: string;
+  style?: React.CSSProperties;
+  hasFadingBorder?: boolean;
+}
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Large Cards (Top Row) */}
-            {features.slice(0, 2).map((feature, index) => (
-              <div
-                key={feature.id}
-                className="group relative p-8 rounded-3xl border border-purple-500/20 bg-gradient-to-br from-slate-900/50 to-purple-950/30 backdrop-blur-sm hover:border-purple-500/40 transition-all duration-300 hover:scale-[1.02] animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {/* Icon */}
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600/20 to-cyan-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="w-8 h-8 text-purple-400" />
-                </div>
+// A reusable card component for the "Why join us?" section
+const InfoCard: React.FC<InfoCardProps> = ({ icon, title, description, className, style = {}, hasFadingBorder = false }) => (
+  <div className={`relative rounded-[30px] flex flex-col justify-between h-full overflow-hidden ${className}`} style={style}>
+    {hasFadingBorder && (
+      <div 
+        className="absolute inset-0 rounded-[30px] pointer-events-none"
+        style={{
+          border: '2px solid transparent',
+          background: 'linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1)) border-box',
+          WebkitMask: 
+            'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'exclude',
+          maskComposite: 'exclude',
+        }}
+      />
+    )}
+    <div className="relative flex flex-col h-full">
+        <div className="text-7xl mb-8">
+          {icon}
+        </div>
+        <div className="flex justify-between items-center gap-4 mt-auto">
+            <div className="flex-1">
+                 <h3 className="font-semibold text-[34px] leading-tight mb-4 text-white">{title}</h3>
+                 <p className="text-white/80 text-sm leading-relaxed font-normal">{description}</p>
+            </div>
+            <button className="w-[54px] h-[54px] bg-white rounded-full hover:opacity-90 transition-opacity flex items-center justify-center flex-shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-black">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+        </div>
+    </div>
+  </div>
+);
 
-                {/* Content */}
-                <h4 className="text-2xl font-bold text-white mb-3">
-                  {feature.title}
-                </h4>
-                <p className="text-gray-400 text-base leading-relaxed mb-6">
-                  {feature.description}
-                </p>
+// The main "Why Join Us" component
+const WhyJoinUs: React.FC = () => {
+  const cardData = [
+    {
+      icon: '⚙️',
+      title: 'Tech in Action',
+      description: 'Hands-on workshops, hackathons, and real-world engineering experiences that bring ideas to life.',
+      className: 'lg:col-span-3 p-[31px_40px]',
+      style: {
+        background: 'linear-gradient(139.92deg, #04051B 12.44%, #2A2594 125.92%)'
+      }
+    },
+    {
+      icon: '🎨',
+      title: 'Culture & Creativity',
+      description: 'Open mics, fests, and artistic events where students express, explore, and connect beyond the classroom.',
+      className: 'lg:col-span-3 p-[31px_45px]',
+    },
+    {
+      icon: '⚡️',
+      title: 'Sports & Spirit',
+      description: 'From field games to fitness challenges — it\'s strength, teamwork, and unforgettable memories.',
+      className: 'lg:col-span-2 p-8',
+    },
+    {
+      icon: '💡',
+      title: 'Skill Building',
+      description: 'Opportunities to lead, plan, speak, and solve — shaping both your resume and your confidence.',
+      className: 'lg:col-span-2 p-8',
+    },
+    {
+      icon: '🤝',
+      title: 'Networking',
+      description: 'Meet peers, mentors, and collaborators who challenge and support your journey.',
+      className: 'lg:col-span-2 p-8',
+    },
+  ];
 
-                {/* Arrow Button */}
-                <button className="w-10 h-10 rounded-full bg-white hover:bg-white/20 flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
-                  <ArrowRight className="w-5 h-5 text-black" />
-                </button>
-              </div>
-            ))}
-
-            {/* Small Cards (Bottom Row) */}
-            {features.slice(2).map((feature, index) => (
-              <div
-                key={feature.id}
-                className="group relative p-8 rounded-3xl border border-purple-500/20 bg-gradient-to-br from-slate-900/50 to-purple-950/30 backdrop-blur-sm hover:border-purple-500/40 transition-all duration-300 hover:scale-[1.02] animate-fade-in-up"
-                style={{ animationDelay: `${(index + 2) * 0.1}s` }}
-              >
-                {/* Icon */}
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600/20 to-cyan-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="w-8 h-8 text-yellow-400" />
-                </div>
-
-                {/* Content */}
-                <h4 className="text-2xl font-bold text-white mb-3">
-                  {feature.title}
-                </h4>
-                <p className="text-gray-400 text-base leading-relaxed mb-6">
-                  {feature.description}
-                </p>
-
-                {/* Arrow Button */}
-                <button className="w-10 h-10 rounded-full bg-white hover:bg-white/20 flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
-                  <ArrowRight className="w-5 h-5 text-black" />
-                </button>
-              </div>
-            ))}
-          </div>
+  return (
+    <div className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto flex flex-col items-center gap-[77px]">
+        <h2 className="text-5xl font-semibold text-[#D4F39A] text-center">
+          Why join us?
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5 w-full">
+          {cardData.map((card, index) => (
+            <InfoCard
+              key={index}
+              icon={card.icon}
+              title={card.title}
+              description={card.description}
+              className={card.className}
+              style={card.style}
+              hasFadingBorder={true} 
+            />
+          ))}
         </div>
       </div>
+    </div>
+  );
+};
 
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 1s ease-out forwards;
-        }
-
-        .animate-fade-in-delay {
-          animation: fade-in 1s ease-out 0.3s forwards;
-          opacity: 0;
-        }
-
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
-    </section>
-  )
-}

@@ -1,247 +1,81 @@
-'use client'
+"use client"
+import React from 'react';
 
-import { Instagram, Linkedin, Mail, Twitter, Facebook, Github } from 'lucide-react'
-
-export default function Footer() {
-  const socialLinks = [
-    {
-      name: 'Instagram',
-      icon: Instagram,
-      url: 'https://instagram.com/vertex',
-      color: 'from-pink-500 to-purple-500',
-    },
-    {
-      name: 'LinkedIn',
-      icon: Linkedin,
-      url: 'https://linkedin.com/company/vertex',
-      color: 'from-blue-500 to-cyan-500',
-    },
-    {
-      name: 'Twitter',
-      icon: Twitter,
-      url: 'https://twitter.com/vertex',
-      color: 'from-sky-400 to-blue-500',
-    },
-    {
-      name: 'Facebook',
-      icon: Facebook,
-      url: 'https://facebook.com/vertex',
-      color: 'from-blue-600 to-indigo-600',
-    },
-    {
-      name: 'GitHub',
-      icon: Github,
-      url: 'https://github.com/vertex',
-      color: 'from-gray-600 to-gray-800',
-    },
-    {
-      name: 'Email',
-      icon: Mail,
-      url: 'mailto:contact@vertex.com',
-      color: 'from-purple-500 to-pink-500',
-    },
-  ]
-
-  const quickLinks = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Events', href: '#events' },
-    { name: 'Team', href: '#members' },
-    { name: 'Blog', href: '#blog' },
-  ]
-
+// The main App component that renders only the Footer
+const App: React.FC = () => {
   return (
-    <footer
-      id="contact"
-      className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
-      style={{ backgroundColor: '#04041e' }}
-    >
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(123,49,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(123,49,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]" />
+    // A single container with the dark background for the footer
+    <div className="bg-[#04041E] font-sans overflow-x-hidden">
+      <Footer />
+    </div>
+  );
+}
+export default App;
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-cyan-600/10 rounded-full blur-[120px]" />
+// The Footer component
+const Footer: React.FC = () => {
+  const navLinks = ['Home', 'About', 'Members', 'Contact'];
+  
+  return (
+    <footer className="relative w-full h-[450px] flex items-center justify-center overflow-hidden mt-20">
+      <div
+        className="absolute top-0 w-[2353px] h-full"
+        style={{
+          background: 'linear-gradient(154.35deg, #04051B 25%, #2A2594 60%, #04051B 95%)',
+          borderTopLeftRadius: '50%',
+          borderTopRightRadius: '50%',
+        }}
+      ></div>
+       {/* White border overlay */}
+      <div
+        className="absolute top-0 w-[2353px] h-full pointer-events-none"
+        style={{
+          borderTop: '1.5px solid rgba(255, 255, 255, 0.3)',
+          borderTopLeftRadius: '50%',
+          borderTopRightRadius: '50%',
+        }}
+      ></div>
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-end h-full pb-10">
+        <div className="w-full flex flex-col items-center gap-10">
+            <div className="w-full flex flex-col md:flex-row justify-between items-center gap-8">
+                {/* Logo */}
+                <img src="/vertex-logo.png" alt="VERTEX Logo" className="h-8 w-auto" />
 
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
-          {/* Left: Vertex Branding */}
-          <div className="lg:col-span-1 animate-fade-in">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                VERTEX
-              </span>
-            </h2>
-            <p className="text-gray-400 text-base leading-relaxed mb-6">
-              The official student club of Department of Electronics and Telecommunication
-            </p>
-            <p className="text-gray-500 text-sm">
-              Empowering students through creativity, collaboration, and community.
-            </p>
-          </div>
-
-          {/* Middle: Quick Links */}
-          <div className="lg:col-span-1 animate-fade-in-delay">
-            <h3 className="text-white text-xl font-bold mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-base flex items-center gap-2 group"
-                  >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-purple-400 transition-all duration-300" />
-                    {link.name}
+                {/* Nav Links */}
+                <nav className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-y-4 gap-x-8 md:gap-x-14">
+                    {navLinks.map((link) => (
+                    <a key={link} href="#" className="font-semibold text-white text-xl hover:opacity-80 transition-opacity">
+                        {link}
+                    </a>
+                    ))}
+                </nav>
+                {/* Social Icons */}
+                <div className="flex items-center gap-4">
+                  <a href="#" className="w-11 h-11 bg-white rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47 14 5.5 16 5.5H17.5V2.14C17.174 2.097 15.943 2 14.643 2C11.928 2 10 3.657 10 6.7V9.5H7V13.5H10V22H14V13.5Z" fill="#04051B"/></svg>
                   </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Right: Contact Us */}
-          <div className="lg:col-span-1 animate-fade-in-delay-2">
-            <h3 className="text-white text-xl font-bold mb-6">Contact Us</h3>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
-                <div>
-                  <p className="text-gray-400 text-base">contact@vertex.com</p>
-                  <p className="text-gray-500 text-sm">Get in touch with us</p>
+                  <a href="#" className="w-11 h-11 bg-white rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.46 6C21.78 6.3 21.04 6.5 20.28 6.6C21.08 6.1 21.68 5.3 21.98 4.4C21.24 4.9 20.44 5.2 19.6 5.4C18.9 4.7 17.94 4.2 16.86 4.2C14.84 4.2 13.22 5.8 13.22 7.8C13.22 8.1 13.24 8.4 13.3 8.7C9.28 8.5 5.72 6.6 3.18 3.8C2.86 4.3 2.68 5 2.68 5.6C2.68 6.9 3.36 8 4.4 8.6C3.78 8.6 3.18 8.4 2.64 8.1V8.2C2.64 10 4.02 11.5 5.74 11.8C5.44 11.9 5.12 12 4.78 12C4.54 12 4.3 11.9 4.08 11.9C4.56 13.4 6.02 14.5 7.74 14.5C6.38 15.6 4.68 16.2 2.84 16.2C2.54 16.2 2.26 16.2 2 16.1C3.78 17.3 5.86 18 8.08 18C16.84 18 20.48 10.9 20.48 4.8C20.48 4.6 20.48 4.4 20.46 4.2C21.3 3.6 22 2.8 22.46 1.9L22.46 6Z" fill="#04051B"/></svg>
+                  </a>
+                  <a href="#" className="w-11 h-11 bg-white rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664 4.771 4.919-4.919 1.266-.058 1.644-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689-.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" fill="#04051B"/></svg>
+                  </a>
+                  <a href="#" className="w-11 h-11 bg-white rounded-full flex items-center justify-center hover:opacity-80 transition-opacity">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#04051B"/></svg>
+                  </a>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                <div>
-                  <p className="text-gray-400 text-base">ETE Department</p>
-                  <p className="text-gray-500 text-sm">Your College Name</p>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-purple-500/20 my-8" />
-
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-          {/* Social Media Links */}
-          <div className="flex flex-wrap justify-center md:justify-start gap-4 animate-fade-in-up">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative w-12 h-12 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 border border-purple-500/20 hover:border-purple-500/50 flex items-center justify-center transition-all duration-300 hover:scale-110"
-                aria-label={social.name}
-              >
-                <social.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-300" />
-                
-                {/* Tooltip */}
-                <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-slate-900 border border-purple-500/30 rounded-lg text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-                  {social.name}
-                </span>
-              </a>
-            ))}
-          </div>
-
-          {/* Copyright */}
-          <div className="text-gray-500 text-sm text-center md:text-right animate-fade-in-up">
-            <p>© 2025 Vertex. All rights reserved.</p>
-            <p className="mt-1">
-              Made with{' '}
-              <span className="text-red-500">❤️</span>
-              {' '}by Vertex Team
+            {/* Divider */}
+            <hr className="w-full border-t border-white/50" />
+            {/* Copyright */}
+            <p className="text-white text-sm text-center tracking-wider">
+              Made with ❤️ by Vertex
             </p>
-          </div>
-        </div>
-
-        {/* Message Us Button (Floating) */}
-        <div className="fixed bottom-8 right-8 z-50 animate-bounce-slow">
-          <a
-            href="mailto:contact@vertex.com"
-            className="group flex items-center gap-3 px-6 py-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium shadow-2xl shadow-purple-500/40 hover:shadow-purple-500/60 transition-all duration-300 hover:scale-105"
-          >
-            <Mail className="w-5 h-5" />
-            <span className="hidden sm:inline">Message Us</span>
-          </a>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes bounce-slow {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 1s ease-out forwards;
-        }
-
-        .animate-fade-in-delay {
-          animation: fade-in 1s ease-out 0.2s forwards;
-          opacity: 0;
-        }
-
-        .animate-fade-in-delay-2 {
-          animation: fade-in 1s ease-out 0.4s forwards;
-          opacity: 0;
-        }
-
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out 0.6s forwards;
-          opacity: 0;
-        }
-
-        .animate-bounce-slow {
-          animation: bounce-slow 3s ease-in-out infinite;
-        }
-      `}</style>
     </footer>
-  )
-}
+  );
+};
+
+
+
