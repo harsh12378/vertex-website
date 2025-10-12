@@ -5,7 +5,7 @@ import React from 'react';
 const App: React.FC = () => {
   return (
     // A single container with the dark background for the footer
-    <div className="bg-[#04041E] font-sans overflow-x-hidden">
+    <div id="contact" className="bg-[#04041E] font-sans overflow-x-hidden">
       <Footer />
     </div>
   );
