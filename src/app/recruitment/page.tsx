@@ -163,7 +163,6 @@ export default function RegisterPage() {
           </div>
        
 
-          {/* Email */}
           <div>
             <label className="block text-white text-sm font-medium mb-2 flex items-center gap-2">
               <Mail className="w-4 h-4 text-purple-400" />
