@@ -15,35 +15,32 @@ const geistMono = Geist_Mono({
 });
 
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const path = usePathname();
- return (
+
+  return (
     <html lang="en">
-      <div className="bg-[#04041e] min-h-screen">
-      <body>
+      <body className="bg-[#04041e] min-h-screen overflow-x-hidden">
         <AnimatePresence mode="wait">
-               <motion.div
-  key={path}
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  exit={{ opacity: 0, y: -20 }}
-  transition={{ 
-    duration: 0.4,
-    ease: [0.43, 0.13, 0.23, 0.96]
-  }}
-  style={{ backgroundColor: '#04041e' }}
-  className="min-h-screen"
->
+          <motion.div
+            key={path}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{
+              duration: 0.4,
+              ease: [0.43, 0.13, 0.23, 0.96],
+            }}
+            className="min-h-screen bg-[#04041e]"
+          >
             {children}
           </motion.div>
         </AnimatePresence>
       </body>
-      </div>
     </html>
   );
 }
