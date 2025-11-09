@@ -18,7 +18,7 @@ const AboutVertex: React.FC = () => {
   return (
     <div className="text-white py-14 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
       <div className="max-w-7xl mx-auto flex flex-row items-stretch gap-[47px] w-full">
-        {/* Custom Slider Element - Hidden on small screens (md and below) to fix alignment */}
+       
         <div className="relative w-[12px] flex-shrink-0 hidden md:block">
           <div className="absolute w-[5px] left-1/2 top-1 bottom-0 -translate-x-1/2 bg-[#D9D9D9] bg-opacity-45 rounded-full"></div>
           <div className="absolute w-[12px] h-[8px] left-1/2 top-1 -translate-x-1/2 bg-gradient-to-r from-[#A2AB9D] to-[#E9EFD9] rounded-full"></div>
@@ -34,7 +34,7 @@ const AboutVertex: React.FC = () => {
               Empowering students through creativity, collaboration, and community.
             </h2>
           </div>
-          <div className="font-normal text-[23px] leading-[140%] tracking-[-0.01em] text-[#D9D9D9] space-y-6 text-justify">
+          <div className="font-normal text-[20px] leading-[140%] tracking-[-0.01em] text-[#D9D9D9] space-y-6 text-justify">
             <p>
               In a world where learning goes beyond classrooms, Vertex stands as a dynamic student led club from the ETE Department at DSCE. It is a space where innovation meets expression bringing students together through technical excellence, cultural vibrance, and social impact.
             </p>

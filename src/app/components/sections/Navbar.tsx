@@ -10,7 +10,7 @@ export default function Navbar() {
     { id: 'home', label: 'Home' },
     { id: 'events', label: 'Events' },
     { id: 'about', label: 'About' },
-    { id: 'members', label: 'Members' },
+    { id: 'clubs', label: 'Clubs' },
     { id: 'contact', label: 'Contact' },
   ]
 

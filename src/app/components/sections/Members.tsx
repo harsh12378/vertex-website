@@ -57,7 +57,7 @@ export default function Founders() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-8 items-start mb-16">
           <div className={`animate-fade-in ${urbanist.className}`}>
             <h2 className="text-[64px] font-semibold text-white leading-[77px]">
-              Meet the<br />Founders
+              Meet our<br />Members
             </h2>
           </div>
           <div className={`animate-fade-in-delay lg:pt-2 ${poppins.className}`}>

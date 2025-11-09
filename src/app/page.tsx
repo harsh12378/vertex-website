@@ -5,6 +5,7 @@ import UpcomingEvents from './components/sections/upcoming'
 import About from "./components/sections/About";
 import Members from './components/sections/Members'
 import  Contact from './components/sections/Contact'
+import Clubs from "./components/sections/Clubs";  
 export default function Home() {
   return (
     <div>
@@ -13,6 +14,7 @@ export default function Home() {
    <UpcomingEvents/>
    <About/>
    <Members/>
+   <Clubs/>
    <Contact/>
     </div>
   );
