@@ -19,7 +19,6 @@ model Recruitment {
   name      String
   usn       String   @unique
   year      String
-  branch    String
   email     String
   whatsapp  String
   domains   String[] // Array of domains (Cultural, Media, Technical, Sports, Design)

@@ -9,7 +9,7 @@ export default function RegisterPage() {
     name: '',
     usn: '',
     year: '',
-    branch: '',
+  
     email: '',
     whatsapp: '',
     domains: [] as string[],
@@ -17,14 +17,7 @@ export default function RegisterPage() {
   })
 
   const years = ['1st Year', '2nd Year', '3rd Year', '4th Year']
-  const branches = [
-    'Computer Science Engineering',
-    'Electronics and Communication',
-    'Information Science',
-    'Mechanical Engineering',
-    'Civil Engineering',
-    'Electrical Engineering',
-  ]
+ 
   const domains = ['Cultural', 'Media', 'Technical', 'Sports', 'Design']
 
   const handleDomainToggle = (domain: string) => {
@@ -40,7 +33,7 @@ export default function RegisterPage() {
     e.preventDefault()
     
     // Validation
-    if (!formData.name || !formData.usn || !formData.year || !formData.branch || 
+    if (!formData.name || !formData.usn || !formData.year  || 
         !formData.email || !formData.whatsapp || formData.domains.length === 0 || !formData.message) {
       alert('Please fill in all required fields!')
       return
@@ -61,7 +54,7 @@ export default function RegisterPage() {
           name: '',
           usn: '',
            year: '',
-           branch: '',
+         
            email: '',
            whatsapp: '',
           domains: [],
@@ -151,47 +144,26 @@ export default function RegisterPage() {
           </div>
 
           {/* Year and Branch (Grid) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {/* Year */}
-            <div>
-              <label className="block text-white text-sm font-medium mb-2">
-                Year of Study *
-              </label>
-              <select
-                required
-                value={formData.year}
-                onChange={(e) => setFormData({ ...formData, year: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-purple-500/30 text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 cursor-pointer"
-              >
-                <option value="" className="bg-slate-900">Select year</option>
-                {years.map((year) => (
-                  <option key={year} value={year} className="bg-slate-900">
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Branch */}
-            <div>
-              <label className="block text-white text-sm font-medium mb-2">
-                Branch *
-              </label>
-              <select
-                required
-                value={formData.branch}
-                onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-purple-500/30 text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 cursor-pointer"
-              >
-                <option value="" className="bg-slate-900">Select branch</option>
-                {branches.map((branch) => (
-                  <option key={branch} value={branch} className="bg-slate-900">
-                    {branch}
-                  </option>
-                ))}
-              </select>
-            </div>
+     {/* Year */}
+          <div>
+            <label className="block text-white text-sm font-medium mb-2">
+              Year of Study *
+            </label>
+            <select
+              required
+              value={formData.year}
+              onChange={(e) => setFormData({ ...formData, year: e.target.value })}
+              className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-purple-500/30 text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 cursor-pointer"
+            >
+              <option value="" className="bg-slate-900">Select year</option>
+              {years.map((year) => (
+                <option key={year} value={year} className="bg-slate-900">
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
+       
 
           {/* Email */}
           <div>
@@ -280,5 +252,6 @@ export default function RegisterPage() {
         </div>
       </div>
     </div>
+   
   )
 }
