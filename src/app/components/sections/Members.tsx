@@ -22,15 +22,15 @@ export default function Founders() {
     },
     {
       id: 3,
-      name: 'Amogh',
-      role: 'Media Lead',
-      image: '/founders/amogh.jpg',
+      name: 'Devesh',
+      role: 'Lead',
+      image: '/founders/devesh.jpg',
     },
     {
       id: 4,
-      name: 'Aryan',
-      role: 'Events Lead',
-      image: '/founders/aryan.jpg',
+      name: 'Aditya Gupta',
+      role: 'Lead',
+      image: '/founders/aditya.jpg',
     },
     {
       id: 5,
