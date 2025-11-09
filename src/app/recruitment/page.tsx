@@ -142,8 +142,6 @@ export default function RegisterPage() {
               placeholder="e.g., 1XX21EC001"
             />
           </div>
-
-          {/* Year and Branch (Grid) */}
      {/* Year */}
           <div>
             <label className="block text-white text-sm font-medium mb-2">

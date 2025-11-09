@@ -4,7 +4,6 @@ CREATE TABLE "public"."recruitments" (
     "name" TEXT NOT NULL,
     "usn" TEXT NOT NULL,
     "year" TEXT NOT NULL,
-    "branch" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "whatsapp" TEXT NOT NULL,
     "domains" TEXT[],

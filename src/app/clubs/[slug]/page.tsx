@@ -140,20 +140,28 @@ const clubs = [
     members: [] 
   },
 ];
+export async function generateStaticParams() {
+  return clubs.map((club) => ({
+    slug: club.slug,
+  }));
+}
 
-// COMPONENT: This is the actual React component that Next.js will render.
-export default function ClubPage({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
 
+export default async function ClubPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params;
   const club = clubs.find((c) => c.slug === slug);
 
   if (!club) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-24 text-white" style={{ backgroundColor: '#04041e' }}>
         <h1 className="text-4xl font-bold">Club not found</h1>
-        <a href="/" className="mt-4 text-violet-400 hover:underline">
+        <Link href="/" className="mt-4 text-violet-400 hover:underline">
           Go back to Home
-        </a>
+        </Link>
       </main>
     );
   }
@@ -415,9 +423,9 @@ export default function ClubPage({ params }: { params: { slug: string } }) {
         )}
 
         <div className="text-center mt-16">
-          <a href="/#clubs" className="inline-block text-violet-400 hover:underline animate-fade-in-up" style={{animationDelay: '0.6s'}}>
-            &larr; Back to all clubs
-          </a>
+          <Link href="/#clubs" className="inline-block text-violet-400 hover:underline animate-fade-in-up" style={{animationDelay: '0.6s'}}>
+            &larr; Back
+          </Link>
         </div>
       </div>
 

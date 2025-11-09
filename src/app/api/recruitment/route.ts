@@ -13,7 +13,6 @@ export async function POST(request:Request){
                 name:body.name,
                 usn:body.usn,
                 year:body.year,
-                branch:body.branch,
                 email:body.email,
                 whatsapp:body.whatsapp,
                 domains:body.domains,
