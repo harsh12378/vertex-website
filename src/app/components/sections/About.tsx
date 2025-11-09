@@ -34,7 +34,7 @@ const AboutVertex: React.FC = () => {
               Empowering students through creativity, collaboration, and community.
             </h2>
           </div>
-          <div className="font-normal text-[28px] leading-[140%] tracking-[-0.01em] text-[#D9D9D9] space-y-6">
+          <div className="font-normal text-[23px] leading-[140%] tracking-[-0.01em] text-[#D9D9D9] space-y-6 text-justify">
             <p>
               In a world where learning goes beyond classrooms, Vertex stands as a dynamic student led club from the ETE Department at DSCE. It is a space where innovation meets expression bringing students together through technical excellence, cultural vibrance, and social impact.
             </p>
