@@ -1,9 +1,9 @@
-'use client';
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AnimatePresence, motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
+import ClientLayout from "./clientLayout";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -18,28 +18,14 @@ const geistMono = Geist_Mono({
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
-  const path = usePathname();
+ 
 
   return (
     <html lang="en">
       <body className="bg-[#04041e] min-h-screen overflow-x-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={path}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{
-              duration: 0.4,
-              ease: [0.43, 0.13, 0.23, 0.96],
-            }}
-            className="min-h-screen bg-[#04041e]"
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

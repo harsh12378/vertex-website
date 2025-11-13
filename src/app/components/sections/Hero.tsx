@@ -85,7 +85,7 @@ export default function Hero() {
         {/* Top Section */}
         <div className="flex flex-col items-center justify-center flex-grow">
           <Image
-            src="/vertex2.png"
+            src="/vertex2.webp"
             alt="VERTEX"
             width={1043}
             height={300}

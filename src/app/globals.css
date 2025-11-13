@@ -1,2 +1,6 @@
 @import "tailwindcss";
 
+.min-h-screen {
+  opacity: 1;
+  transform: translateY(0);
+}

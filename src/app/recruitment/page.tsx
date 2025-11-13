@@ -1,5 +1,4 @@
 'use client'
-
 import { useState } from 'react'
 import { User, Mail, Phone, MessageSquare, CheckSquare, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
